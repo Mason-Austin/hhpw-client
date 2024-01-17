@@ -7,7 +7,7 @@ function ViewOrders() {
 
   const getAllOrders = () => {
     getAllOpenOrders().then(setOrders);
-  }
+  };
 
   useEffect(() => {
     getAllOrders();
