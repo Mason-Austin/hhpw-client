@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { getAllOpenOrders } from '../../Api/orders';
 import OrderCard from '../../components/OrderCard';
+import transformOrderTerminology from '../../utils/orderServerToFront';
 
 function ViewOrders() {
   const [orders, setOrders] = useState([]);
 
   const getAllOrders = () => {
-    getAllOpenOrders().then(setOrders);
+    getAllOpenOrders().then(transformOrderTerminology).then(setOrders);
   };
 
   useEffect(() => {
@@ -25,7 +27,7 @@ function ViewOrders() {
       </Button> */}
       {orders.map((order) => (
         <section key={`order--${order.id}`} className="order">
-          <OrderCard name={order.name} open={order.open} customerPhone={order.customer_phone} customerEmail={order.customer_email} id={order.id} type={order.type} onUpdate={getAllOrders} />
+          <OrderCard order={order} onUpdate={getAllOrders} />
         </section>
       ))}
     </article>
