@@ -7,4 +7,4 @@ const getAllOpenOrders = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getAllOpenOrders }
+export { getAllOpenOrders };
