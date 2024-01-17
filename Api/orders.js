@@ -19,4 +19,16 @@ const updateOrder = (updatedOrder, orderId) => new Promise((resolve, reject) => 
     .catch((error) => reject(error));
 });
 
+const createOrder = (order) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(order),
+  })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
+});
+
 export { getAllOpenOrders, updateOrder };
