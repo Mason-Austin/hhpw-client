@@ -12,4 +12,11 @@ const createRevenue = (revenue) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default createRevenue;
+const getRevenues = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/revenues`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export { createRevenue, getRevenues };

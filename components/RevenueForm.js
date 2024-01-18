@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import createRevenue from '../Api/revenue';
+import { createRevenue } from '../Api/revenue';
 
 const initialState = {
   orderId: '',
