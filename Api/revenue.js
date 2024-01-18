@@ -12,4 +12,4 @@ const createRevenue = (revenue) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { createRevenue };
+export default createRevenue;

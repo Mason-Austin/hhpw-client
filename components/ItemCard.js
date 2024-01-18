@@ -1,9 +1,14 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { addOrderItem, deleteOrderItem } from '../Api/items';
 
-function ItemCard({ item, onUpdate, order, add }) {
+function ItemCard({
+  item,
+  onUpdate,
+  order,
+  add,
+}) {
   const removeThisItem = () => {
     const orderItemId = { orderItemId: item.id };
     if (window.confirm(`Remove ${item.name}?`)) {
@@ -17,7 +22,7 @@ function ItemCard({ item, onUpdate, order, add }) {
       onUpdate();
       window.alert(`${item.name} successfully added to order`);
     });
-};
+  };
 
   return (
     <Card>
@@ -29,5 +34,18 @@ function ItemCard({ item, onUpdate, order, add }) {
     </Card>
   );
 }
+
+ItemCard.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  order: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  add: PropTypes.bool.isRequired,
+};
 
 export default ItemCard;

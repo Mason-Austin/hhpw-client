@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
@@ -28,6 +28,21 @@ const OrderCard = ({ order, onUpdate }) => {
       </Card.Body>
     </Card>
   );
+};
+
+OrderCard.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    customerPhone: PropTypes.string.isRequired,
+    customerEmail: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    // Add other properties of the 'order' object if needed
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default OrderCard;

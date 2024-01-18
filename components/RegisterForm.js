@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { registerUser } from '../utils/auth'; // Update with path to registerUser
@@ -19,6 +18,9 @@ function RegisterForm({ user, updateUser }) {
 RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string.isRequired,
+    fbUser: PropTypes.shape({
+      displayName: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
 };

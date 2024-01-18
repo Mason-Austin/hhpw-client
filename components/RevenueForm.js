@@ -1,8 +1,7 @@
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import createRevenue from '../Api/revenue'
+import createRevenue from '../Api/revenue';
 
 const initialState = {
   orderId: '',
@@ -10,8 +9,7 @@ const initialState = {
   tip: '',
 };
 
-const RevenueForm = ({ user }) => {
-  const router = useRouter();
+const RevenueForm = ({ order, onUpdate, handleClose }) => {
   const [currentRevenue, setCurrentRevenue] = useState(initialState);
 
   const handleChange = (e) => {
@@ -25,13 +23,15 @@ const RevenueForm = ({ user }) => {
   const handleSubmit = (e) => {
     // Prevent form from being submitted
     e.preventDefault();
-      const revenue = {
-        orderId: '',
-        paymentType: currentRevenue.paymentType,
-        tip: currentRevenue.tip,
-      }
-      createRevenue(revenue).then(() => router.push('/orders/'));
-    }
+    const revenue = {
+      orderId: order.id,
+      paymentType: currentRevenue.paymentType,
+      tip: parseFloat(currentRevenue.tip),
+    };
+    createRevenue(revenue).then(() => {
+      onUpdate();
+      handleClose();
+    });
   };
 
   return (
@@ -62,15 +62,20 @@ const RevenueForm = ({ user }) => {
         <Button variant="primary" type="submit">
           Close Order
         </Button>
+        <Button variant="primary" onClick={handleClose} type="button">
+          Close Form
+        </Button>
       </Form>
     </>
   );
 };
 
 RevenueForm.propTypes = {
-  user: PropTypes.shape({
+  order: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
-export default OrderForm;
+export default RevenueForm;
