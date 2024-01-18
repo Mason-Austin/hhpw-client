@@ -22,7 +22,7 @@ const OrderCard = ({ order, onUpdate }) => {
         <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <OrderModel order={order} />
+        <OrderModel order={order} onUpdate={onUpdate} />
         <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
 
       </Card.Body>

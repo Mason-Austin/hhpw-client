@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Modal from 'react-bootstrap/Modal';
 import ItemCard from '../ItemCard';
 
-function OrderModel({order}) {
+function OrderModel({ order, onUpdate }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -32,7 +32,7 @@ function OrderModel({order}) {
             <ListGroup.Item>Email: {order.customerEmail}</ListGroup.Item>
             <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
             <CardBody>
-              {order.items?.map((item) => (<ItemCard item={item} />))}
+              {order.items?.map((item) => (<ItemCard order={order} item={item} onUpdate={onUpdate} />))}
             </CardBody>
           </ListGroup>
         </Card>
