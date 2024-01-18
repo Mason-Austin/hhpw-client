@@ -12,4 +12,23 @@ const deleteOrderItem = (orderItemId, orderId) => new Promise((resolve, reject) 
     .catch((error) => reject(error));
 });
 
-export { deleteOrderItem };
+const getAllItems = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/items`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+const addOrderItem = (itemId, orderId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders/${orderId}/add_item_to_order`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(itemId),
+  })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
+});
+
+export { deleteOrderItem, getAllItems, addOrderItem };
