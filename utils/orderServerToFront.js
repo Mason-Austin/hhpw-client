@@ -1,7 +1,7 @@
 const transformOrderTerminology = (orders) => {
-  const newOrderArry = [];
-  orders.forEach((order) => {
-    const newOrder = {
+  // Check if orders is an array
+  if (Array.isArray(orders)) {
+    return orders.map((order) => ({
       id: order.id,
       name: order.name,
       open: order.open,
@@ -11,10 +11,20 @@ const transformOrderTerminology = (orders) => {
       employeeId: order.employee_id,
       user: order.user,
       items: order.items,
-    };
-    newOrderArry.push(newOrder);
-  });
-  return newOrderArry;
+    }));
+  }
+  // If orders is a single object, transform it and return an array with a single item
+  return {
+    id: orders.id,
+    name: orders.name,
+    open: orders.open,
+    customerPhone: orders.customer_phone,
+    customerEmail: orders.customer_email,
+    type: orders.type,
+    employeeId: orders.employee_id,
+    user: orders.user,
+    items: orders.items,
+  };
 };
 
 export default transformOrderTerminology;

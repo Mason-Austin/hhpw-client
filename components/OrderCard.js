@@ -7,7 +7,6 @@ import OrderModel from './models/OrderModal';
 
 const OrderCard = ({ order, onUpdate }) => {
   const router = useRouter();
-  console.warn(order);
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -25,7 +24,7 @@ const OrderCard = ({ order, onUpdate }) => {
       </ListGroup>
       <Card.Body>
         <OrderModel order={order} />
-        <Card.Link href="#">Edit</Card.Link>
+        <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
 
       </Card.Body>
     </Card>

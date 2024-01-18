@@ -13,7 +13,7 @@ const updateOrder = (updatedOrder, orderId) => new Promise((resolve, reject) => 
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updateOrder),
+    body: JSON.stringify(updatedOrder),
   })
     .then((data) => resolve(data))
     .catch((error) => reject(error));
@@ -31,4 +31,18 @@ const createOrder = (order) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getAllOpenOrders, updateOrder };
+const getSingleOrder = (orderId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders/${orderId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export {
+  getAllOpenOrders, updateOrder, createOrder, getSingleOrder,
+};
