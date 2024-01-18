@@ -17,7 +17,6 @@ const OrderCard = ({ order, onUpdate }) => {
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>{order.open ? 'Open order' : 'Closed order'}</ListGroup.Item>
         <ListGroup.Item>Phone#: {order.customerPhone}</ListGroup.Item>
         <ListGroup.Item>Email: {order.customerEmail}</ListGroup.Item>
         <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>

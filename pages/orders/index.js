@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { Button } from 'react-bootstrap';
 import { getAllOpenOrders } from '../../Api/orders';
 import OrderCard from '../../components/OrderCard';
 import transformOrderTerminology from '../../utils/orderServerToFront';
@@ -17,14 +16,7 @@ function ViewOrders() {
 
   return (
     <article className="orders">
-      <h1>Orders</h1>
-      {/* <Button
-        onClick={() => {
-          router.push('/orders/new');
-        }}
-      >
-        Register New order
-      </Button> */}
+      <h1>Open Orders</h1>
       {orders.map((order) => (
         <section key={`order--${order.id}`} className="order">
           <OrderCard order={order} onUpdate={getAllOrders} />
