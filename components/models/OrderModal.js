@@ -41,7 +41,7 @@ function OrderModel({ order, onUpdate }) {
                 ))}
               </Card.Body>
             ) : (
-              <Button variant="primary" onClick={handleAddItemsClick}>Add Items</Button>
+              <div><Button variant="primary" onClick={handleAddItemsClick}>Add Items</Button> <Button variant="danger">Close Order</Button></div>
             )}
           </Card.Body>
           {!addItemsClicked && (
