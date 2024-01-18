@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { CardBody } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Modal from 'react-bootstrap/Modal';
+import ItemCard from '../ItemCard';
 
 function OrderModel({order}) {
   const [show, setShow] = useState(false);
@@ -29,6 +31,9 @@ function OrderModel({order}) {
             <ListGroup.Item>Phone#: {order.customerPhone}</ListGroup.Item>
             <ListGroup.Item>Email: {order.customerEmail}</ListGroup.Item>
             <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
+            <CardBody>
+              {order.items?.map((item) => (<ItemCard item={item} />))}
+            </CardBody>
           </ListGroup>
         </Card>
       </Modal>
