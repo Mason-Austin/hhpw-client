@@ -7,6 +7,13 @@ const getAllOpenOrders = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllClosedOrders = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders?closed=True`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const updateOrder = (updatedOrder, orderId) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/orders/${orderId}`, {
     method: 'PUT',
@@ -44,5 +51,9 @@ const getSingleOrder = (orderId) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAllOpenOrders, updateOrder, createOrder, getSingleOrder,
+  getAllOpenOrders,
+  updateOrder,
+  createOrder,
+  getSingleOrder,
+  getAllClosedOrders,
 };
