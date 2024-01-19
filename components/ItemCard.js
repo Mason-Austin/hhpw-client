@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,6 +9,7 @@ function ItemCard({
   onUpdate,
   order,
   add,
+  showClosedOrders,
 }) {
   const removeThisItem = () => {
     const orderItemId = { orderItemId: item.id };
@@ -28,8 +30,17 @@ function ItemCard({
     <Card>
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
-        <Card.Text>{ item.price }</Card.Text>
-        {!add ? <Button onClick={() => { removeThisItem(); }} variant="danger">Remove</Button> : <Button onClick={() => { addThisItem(); }} variant="success">Add</Button>}
+        <Card.Text>{item.price}</Card.Text>
+        {!showClosedOrders && (
+          <Button
+            onClick={() => {
+              add ? addThisItem() : removeThisItem();
+            }}
+            variant={add ? 'success' : 'danger'}
+          >
+            {add ? 'Add' : 'Remove'}
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
@@ -46,6 +57,7 @@ ItemCard.propTypes = {
     id: PropTypes.string.isRequired,
   }).isRequired,
   add: PropTypes.bool.isRequired,
+  showClosedOrders: PropTypes.bool.isRequired,
 };
 
 export default ItemCard;

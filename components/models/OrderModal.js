@@ -9,7 +9,7 @@ import ItemCard from '../ItemCard';
 import { getAllItems } from '../../Api/items';
 import RevenueForm from '../RevenueForm';
 
-function OrderModel({ order, onUpdate }) {
+function OrderModel({ order, onUpdate, showClosedOrders }) {
   const [show, setShow] = useState(false);
   const [items, setItems] = useState();
   const [showItemMenu, setShowItemMenu] = useState(false);
@@ -50,9 +50,17 @@ function OrderModel({ order, onUpdate }) {
             ) : (
               !showRevenueForm && (
                 <div>
-                  <Button variant="primary" onClick={handleAddItemsClick}>Add Items</Button>
                   <Button variant="secondary" onClick={handleClose}>Close Details</Button>
-                  <Button onClick={handleShowRevenueForm} variant="danger">Close Order</Button>
+                  {!showClosedOrders ? (
+                    <>
+                      <Button variant="primary" onClick={handleAddItemsClick}>
+                        Add Items
+                      </Button>
+                      <Button onClick={handleShowRevenueForm} variant="danger">
+                        Close Order
+                      </Button>
+                    </>
+                  ) : null}
                 </div>
               )
             )}
@@ -65,7 +73,7 @@ function OrderModel({ order, onUpdate }) {
               <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
               <Card.Body>
                 {order.items?.map((item) => (
-                  <ItemCard add={false} order={order} item={item} onUpdate={onUpdate} />
+                  <ItemCard showClosedOrders={showClosedOrders} add={false} order={order} item={item} onUpdate={onUpdate} />
                 ))}
               </Card.Body>
             </ListGroup>
@@ -88,6 +96,7 @@ OrderModel.propTypes = {
     items: PropTypes.arrayOf(),
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  showClosedOrders: PropTypes.bool.isRequired,
 };
 
 export default OrderModel;

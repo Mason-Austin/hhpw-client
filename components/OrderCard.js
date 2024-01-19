@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import OrderModel from './models/OrderModal';
 
-const OrderCard = ({ order, onUpdate }) => {
+const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
   const router = useRouter();
 
   return (
@@ -22,9 +22,10 @@ const OrderCard = ({ order, onUpdate }) => {
         <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <OrderModel order={order} onUpdate={onUpdate} />
-        <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
-
+        <OrderModel showClosedOrders={showClosedOrders} order={order} onUpdate={onUpdate} />
+        {!showClosedOrders && (
+          <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
+        )}
       </Card.Body>
     </Card>
   );
@@ -43,6 +44,7 @@ OrderCard.propTypes = {
     // Add other properties of the 'order' object if needed
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  showClosedOrders: PropTypes.bool.isRequired,
 };
 
 export default OrderCard;
