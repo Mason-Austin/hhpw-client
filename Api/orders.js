@@ -50,6 +50,17 @@ const getSingleOrder = (orderId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteSingleOrder = (orderId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders/${orderId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
   getAllOpenOrders,
   updateOrder,
