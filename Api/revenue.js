@@ -12,6 +12,15 @@ const createRevenue = (revenue) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getTotalRevenue = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/revenues/total_revenue`, {
+    method: 'GET',
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getRevenues = () => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/revenues`)
     .then((response) => response.json())
@@ -19,4 +28,4 @@ const getRevenues = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { createRevenue, getRevenues };
+export { createRevenue, getRevenues, getTotalRevenue };
