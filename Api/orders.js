@@ -67,4 +67,5 @@ export {
   createOrder,
   getSingleOrder,
   getAllClosedOrders,
+  deleteSingleOrder,
 };

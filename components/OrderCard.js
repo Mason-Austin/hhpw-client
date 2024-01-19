@@ -4,9 +4,16 @@ import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import OrderModel from './models/OrderModal';
+import { deleteSingleOrder } from '../Api/orders';
 
 const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
   const router = useRouter();
+
+  const deleteThisOrder = () => {
+    if (window.confirm(`Delete ${order.name}'s order?`)) {
+      deleteSingleOrder(order.id).then(() => onUpdate());
+    }
+  };
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -24,7 +31,10 @@ const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
       <Card.Body>
         <OrderModel showClosedOrders={showClosedOrders} order={order} onUpdate={onUpdate} />
         {!showClosedOrders && (
-          <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
+          <>
+            <Button variant="success" type="button" onClick={() => { router.push(`/orders/edit/${order.id}`); }}>Edit</Button>
+            <Button variant="danger" type="button" onClick={() => { deleteThisOrder(); }}>Delete</Button>
+          </>
         )}
       </Card.Body>
     </Card>
