@@ -9,7 +9,12 @@ const initialState = {
   tip: '',
 };
 
-const RevenueForm = ({ order, onUpdate, handleClose }) => {
+const RevenueForm = ({
+  order,
+  onUpdate,
+  handleClose,
+  handleShowRevenueForm,
+}) => {
   const [currentRevenue, setCurrentRevenue] = useState(initialState);
 
   const handleChange = (e) => {
@@ -62,7 +67,7 @@ const RevenueForm = ({ order, onUpdate, handleClose }) => {
         <Button variant="primary" type="submit">
           Close Order
         </Button>
-        <Button variant="primary" onClick={handleClose} type="button">
+        <Button variant="primary" onClick={handleShowRevenueForm} type="button">
           Close Form
         </Button>
       </Form>
@@ -76,6 +81,7 @@ RevenueForm.propTypes = {
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleShowRevenueForm: PropTypes.func.isRequired,
 };
 
 export default RevenueForm;

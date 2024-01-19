@@ -39,7 +39,7 @@ function OrderModel({ order, onUpdate }) {
         <Card>
           <Card.Body>
             <Card.Title>{order.name}`s order</Card.Title>
-            {showRevenueForm && (<RevenueForm handleClose={handleClose} onUpdate={onUpdate} order={order} />)}
+            {showRevenueForm && (<RevenueForm handleShowRevenueForm={handleShowRevenueForm} handleClose={handleClose} onUpdate={onUpdate} order={order} />)}
             {showItemMenu && !showRevenueForm && <Button variant="primary" onClick={handleAddItemsClick}>Done</Button> }
             {showItemMenu && !showRevenueForm ? (
               <Card.Body>
