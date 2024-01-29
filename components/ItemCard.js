@@ -48,13 +48,13 @@ function ItemCard({
 
 ItemCard.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   order: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   add: PropTypes.bool.isRequired,
   showClosedOrders: PropTypes.bool.isRequired,

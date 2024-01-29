@@ -16,7 +16,7 @@ const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '20rem' }}>
       <Card.Body>
         <Card.Title>{order.name}`s order</Card.Title>
         <Card.Text>
@@ -28,7 +28,7 @@ const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
         <ListGroup.Item>Email: {order.customerEmail}</ListGroup.Item>
         <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
       </ListGroup>
-      <Card.Body>
+      <Card.Body style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-evenly' }}>
         <OrderModel showClosedOrders={showClosedOrders} order={order} onUpdate={onUpdate} />
         {!showClosedOrders && (
           <>
@@ -43,15 +43,14 @@ const OrderCard = ({ order, onUpdate, showClosedOrders }) => {
 
 OrderCard.propTypes = {
   order: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    customerPhone: PropTypes.string.isRequired,
+    customerPhone: PropTypes.number.isRequired,
     customerEmail: PropTypes.string.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
-    // Add other properties of the 'order' object if needed
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   showClosedOrders: PropTypes.bool.isRequired,

@@ -15,7 +15,6 @@ function ViewOrders() {
     } else {
       getAllOpenOrders().then(transformOrderTerminology).then(setOrders);
     }
-    console.warn(showClosedOrders);
   };
 
   const handleShowClosedOrders = () => {
@@ -32,11 +31,13 @@ function ViewOrders() {
       <Button style={{ marginBottom: '3%' }} variant="danger" type="button" size="lg" className="copy-btn" onClick={handleShowClosedOrders}>
         {showClosedOrders ? 'View Open Orders' : 'View Closed Orders'}
       </Button>
-      {orders.map((order) => (
-        <section key={`order--${order.id}`} className="order">
-          <OrderCard showClosedOrders={showClosedOrders} order={order} onUpdate={getAllOrders} />
-        </section>
-      ))}
+      <div className='order-con'>
+        {orders.map((order) => (
+          <section key={`order--${order.id}`} className="order">
+            <OrderCard showClosedOrders={showClosedOrders} order={order} onUpdate={getAllOrders} />
+          </section>
+        ))}
+      </div>
     </article>
   );
 }

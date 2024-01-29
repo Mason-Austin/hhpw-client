@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-boolean-value */
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -49,7 +50,7 @@ function OrderModel({ order, onUpdate, showClosedOrders }) {
               </Card.Body>
             ) : (
               !showRevenueForm && (
-                <div>
+                <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-evenly' }}>
                   <Button variant="secondary" onClick={handleClose}>Close Details</Button>
                   {!showClosedOrders ? (
                     <>
@@ -73,7 +74,7 @@ function OrderModel({ order, onUpdate, showClosedOrders }) {
               <ListGroup.Item>Employee: {order.user.name}</ListGroup.Item>
               <Card.Body>
                 {order.items?.map((item) => (
-                  <ItemCard showClosedOrders={showClosedOrders} add={false} order={order} item={item} onUpdate={onUpdate} />
+                  <ItemCard key={`orderItem--${item.id}`} showClosedOrders={showClosedOrders} add={false} order={order} item={item} onUpdate={onUpdate} />
                 ))}
               </Card.Body>
             </ListGroup>
@@ -88,12 +89,12 @@ OrderModel.propTypes = {
   order: PropTypes.shape({
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    customerPhone: PropTypes.string.isRequired,
+    customerPhone: PropTypes.number.isRequired,
     customerEmail: PropTypes.string.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
-    items: PropTypes.arrayOf(),
+    items: PropTypes.array.isRequired,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   showClosedOrders: PropTypes.bool.isRequired,

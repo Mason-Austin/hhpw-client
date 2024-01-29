@@ -20,3 +20,9 @@ a {
 body {
   background-color: #88effd;
 }
+
+.order-con {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

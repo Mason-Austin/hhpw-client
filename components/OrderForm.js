@@ -45,7 +45,6 @@ const OrderForm = ({ user, initialOrder }) => {
 
     // Send POST request to your API
     if (initialOrder) {
-      console.warn(order);
       updateOrder(order, initialOrder.id).then(() => router.push('/orders/'));
     } else {
       createOrder(order).then(() => router.push('/orders/'));
@@ -95,7 +94,7 @@ const OrderForm = ({ user, initialOrder }) => {
 
 OrderForm.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   initialOrder: PropTypes.object,
